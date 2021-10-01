@@ -40,29 +40,29 @@
                 'TO'=>'Tocantins'
             ];
 
-            // Montar a lista dos Estados para a saída
-            echo ' <span style="margin-left:21px">Local Saída: </span>
-                   <select id="estadoSaida" name="estadoSaida" required="required">;
-                      <option value="" selected>Selecione...</option>';
-            foreach ($aEstadosBrasileiros as $sSigla => $sNome) {
-                $sTeste = (isset($_POST['estadoSaida']) && $_POST['estadoSaida'] == $sSigla) ? $sSigla . ' "selected' : $sSigla . '"';
-                echo '<option value="' . $sTeste . '">'. $sNome . '</option>' ;
-            }
-            echo '</select> </br><hr>';
+            if(!isset($_POST['estadoSaida']) || !isset($_POST['estadoChegada'])){
+                // Montar a lista dos Estados para a saída
+                echo ' <span style="margin-left:21px">Local Saída: </span>
+                    <select id="estadoSaida" name="estadoSaida" required="required">;
+                        <option value="" selected>Selecione...</option>';
+                foreach ($aEstadosBrasileiros as $sSigla => $sNome) {
+                    $sTeste = (isset($_POST['estadoSaida']) && $_POST['estadoSaida'] == $sSigla) ? $sSigla . ' "selected' : $sSigla . '"';
+                    echo '<option value="' . $sTeste . '">'. $sNome . '</option>' ;
+                }
+                echo '</select> </br><hr>';
 
-            // Montar a lista dos Estados para a chegada
-            echo ' <span>Local Chegada: </span>
-                   <select id="estadoChegada" name="estadoChegada" required="required">
-                     <option value="" selected>Selecione...</option>';
-            foreach ($aEstadosBrasileiros as $sSigla => $sNome) {
-                $sTeste = isset($_POST['estadoChegada']) && $_POST['estadoChegada'] == $sSigla  ? $sSigla . ' "selected' : $sSigla . '"';
-                echo '<option value="' . $sTeste . '">'. $sNome . '</option>' ;
-            }
-            echo '</select> <br> <br>  <button type="submit">Calcular menor distância</button> </form> </br>';
-
-
-            if(isset($_POST['estadoSaida']) && isset($_POST['estadoChegada'])){
+                // Montar a lista dos Estados para a chegada
+                echo ' <span>Local Chegada: </span>
+                    <select id="estadoChegada" name="estadoChegada" required="required">
+                        <option value="" selected>Selecione...</option>';
+                foreach ($aEstadosBrasileiros as $sSigla => $sNome) {
+                    $sTeste = isset($_POST['estadoChegada']) && $_POST['estadoChegada'] == $sSigla  ? $sSigla . ' "selected' : $sSigla . '"';
+                    echo '<option value="' . $sTeste . '">'. $sNome . '</option>' ;
+                }
+                echo '</select> <br> <br>  <button type="submit">Calcular menor distância</button> </form> </br>';
+            } else if(isset($_POST['estadoSaida']) && isset($_POST['estadoChegada'])){
                 print_r($_POST);
+                echo '</br></br><button type="submit">Fazer outro cálculo</button>';
             }
         ?>
     </form>
