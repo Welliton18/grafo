@@ -18,7 +18,7 @@ class ControllerConsultaPrincipal {
         $aEstadosBrasileiros = $this->getEstados();
 
         $oViewPrincipal = new ViewPrincipal();
-        $oViewPrincipal->criaCampoEstado('estadoSaida', 'Estado Sa?da', $aEstadosBrasileiros, isset($_POST['estadoSaida']) ? $_POST['estadoSaida'] : []);
+        $oViewPrincipal->criaCampoEstado('estadoSaida', 'Estado Saída', $aEstadosBrasileiros, isset($_POST['estadoSaida']) ? $_POST['estadoSaida'] : []);
         $oViewPrincipal->criaCampoEstado('estadoChegada', 'Estado Chegada', $aEstadosBrasileiros, isset($_POST['estadoChegada']) ? $_POST['estadoChegada'] : []);
     //
     //            $oGrafo = new ModelGrafo();
@@ -57,29 +57,29 @@ class ControllerConsultaPrincipal {
             return [
                 'AC'=>'Acre',
                 'AL'=>'Alagoas',
-                'AP'=>'Amap?',
+                'AP'=>'Amapá',
                 'AM'=>'Amazonas',
                 'BA'=>'Bahia',
-                'CE'=>'Cear?',
+                'CE'=>'Ceará',
                 'DF'=>'Distrito Federal',
-                'ES'=>'Esp?rito Santo',
-                'GO'=>'Goi?s',
-                'MA'=>'Maranh?o',
+                'ES'=>'Espírito Santo',
+                'GO'=>'Goiás',
+                'MA'=>'Maranhão',
                 'MT'=>'Mato Grosso',
                 'MS'=>'Mato Grosso do Sul',
                 'MG'=>'Minas Gerais',
-                'PA'=>'Par?',
-                'PB'=>'Para?ba',
-                'PR'=>'Paran?',
+                'PA'=>'Pará',
+                'PB'=>'Paraíba',
+                'PR'=>'Paraná',
                 'PE'=>'Pernambuco',
-                'PI'=>'Piau?',
+                'PI'=>'Piauí',
                 'RJ'=>'Rio de Janeiro',
                 'RN'=>'Rio Grande do Norte',
                 'RS'=>'Rio Grande do Sul',
-                'RO'=>'Rond?nia',
+                'RO'=>'Rondônia',
                 'RR'=>'Roraima',
                 'SC'=>'Santa Catarina',
-                'SP'=>'S?o Paulo',
+                'SP'=>'São Paulo',
                 'SE'=>'Sergipe',
                 'TO'=>'Tocantins'
             ];
