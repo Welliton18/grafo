@@ -2,17 +2,19 @@
 
 namespace view;
 
-class ViewPrincipal {
+class ViewPrincipal extends ViewHtml {
     
-    public function criaCampoEstado($sNome, $sTitulo, $aEstados, $sEstadoSelecionado) {
-        echo "<span style='margin-left:21px'; name='{$sNome}'>{$sTitulo}:</span>
-              <select id='{$sNome}' name='{$sNome}' required='required'>
-              <option value='' selected>Selecione...</option>";
-        foreach ($aEstados as $sSigla => $sNome) {
-            $sValue = ($sEstadoSelecionado == $sSigla) ? $sSigla . ' "selected' : $sSigla . '"';
-            echo "<option value='{$sValue}'>{$sNome}</option>" ;
-        }
-        echo '</select> </br><hr>';
+    public function __construct(array $aEstados, $sEstadoEntradaSelecionado, $sEstadoSaidaSelecionado) {
+        parent::__construct();
+        $this->criaConsulta($aEstados, $sEstadoEntradaSelecionado, $sEstadoSaidaSelecionado);
     }
     
+    private function criaConsulta(array $aEstados, $sEstadoEntradaSelecionado, $sEstadoSaidaSelecionado) {
+        $this->criaTitulo(3, 'Registre aqui o caminho desejado:');
+        $this->criaCampoEstado('estadoSaida', 'Estado Saída', $aEstados, $sEstadoEntradaSelecionado);
+        $this->criaCampoEstado('estadoChegada', 'Estado Chegada', $aEstados, $sEstadoSaidaSelecionado);
+        $this->criaBotao('calcular_rota', 'Enviar');
+    }
+    
+   
 }
