@@ -12,9 +12,13 @@ class ControllerManutencaoPrincipal {
     public function __construct() {
         $this->getModelGrafo();
         $this->gravaDados();
-        $this->processa($this->ModelGrafo->getMatrizLigacoes()[$this->ModelGrafo->getSaida()], $this->ModelGrafo->getSaida(), 0, [$this->ModelGrafo->getSaida()]);
-        echo 'Menor Caminho: '. $this->ModelGrafo->getCaminho(). '.</br>';
-        echo 'Valor Menor Caminho: '. $this->ModelGrafo->getMenorCaminho(). '.</br>';
+        if($this->ModelGrafo->getSaida() === $this->ModelGrafo->getChegada() ){
+            echo 'Os locais de partida e chegada são os mesmos';
+        } else {
+            $this->processa($this->ModelGrafo->getMatrizLigacoes()[$this->ModelGrafo->getSaida()], $this->ModelGrafo->getSaida(), 0, [$this->ModelGrafo->getSaida()]);
+            echo 'Menor Caminho: '. $this->ModelGrafo->getCaminho(). '.</br>';
+            echo 'Valor Menor Caminho: '. $this->ModelGrafo->getMenorCaminho(). '.</br>';
+        }
         echo '</br><a href="./grafo.php">Voltar<a>';
     }
     
