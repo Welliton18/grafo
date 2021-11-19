@@ -35,15 +35,11 @@ class ControllerManutencaoPrincipal {
             if(!in_array($sEstado, $aEstadosVisitados)){
                 $bMenorCaminho = ($iValorCaminho + $iValor) < $this->ModelGrafo->getMenorCaminho();
                 if($sEstado !== $this->ModelGrafo->getChegada() && $bMenorCaminho){
-                    $sCaminho .= '=> ' . $sEstado;
-                    $iValorCaminho += $iValor;
                     $aEstadosVisitados[] = $sEstado;
-                    $this->processa($this->ModelGrafo->getMatrizLigacoes()[$sEstado], $sCaminho, $iValorCaminho, $aEstadosVisitados);
+                    $this->processa($this->ModelGrafo->getMatrizLigacoes()[$sEstado], "{$sCaminho} => {$sEstado}", $iValorCaminho + $iValor, $aEstadosVisitados);
                 } else if($sEstado === $this->ModelGrafo->getChegada() && $bMenorCaminho){
-                    $sCaminho .= '=> ' . $sEstado;
-                    $iValorCaminho += $iValor;
-                    $this->ModelGrafo->setMenorCaminho($iValorCaminho);
-                    $this->ModelGrafo->setCaminho($sCaminho);
+                    $this->ModelGrafo->setMenorCaminho($iValorCaminho + $iValor);
+                    $this->ModelGrafo->setCaminho("{$sCaminho} => {$sEstado}");
                 }
             }
         }
